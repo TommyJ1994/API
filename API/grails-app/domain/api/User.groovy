@@ -23,8 +23,8 @@ class User {
     // User Attribute Constraints
     static constraints = {
       gender(inList: ["male", "female"])
-      name()
-      location()
+      name(blank: false)
+      location(blank: false)
       email(email: true, blank: false)
       username(maxSize: 20, blank: false)
       password(minSize: 6, blank:false)
@@ -37,6 +37,6 @@ class User {
       phone(blank: false, matches: "[0-9]{3}-[0-9]{3}-[0-9]{4}")
       cell(blank: false, matches: "[0-9]{3}-[0-9]{3}-[0-9]{4}")
       PPS(maxSize: 9, matches: "[A-Za-z]+") // Less than 9 characters and contains atleast 1 letter
-      picture())
+      picture(blank: false)
     }
 }
