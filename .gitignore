@@ -31,3 +31,4 @@ API/web-app/plugins
 
 # "temporary" build files
 API/target/
+API/web-app/
