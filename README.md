@@ -12,6 +12,14 @@ Guidelines:
 4. Minimal scaffolding / auto code generation -- we want you to show your ability and creative side so please keep this to a minimum.
 5. Commit early and commit often, we want to see the implementation evolving.
 
+# Resources
+
+GET - "/api/users" - Return list of users.
+GET - "/api/users/$id" - Return information for a given user.
+POST - "/api/users" - Create a new user.
+PUT - "/api/users/$id" - Update a users information.
+DELETE - "/api/users/$id" - Delete a user.
+
 # Database configuration
 
 Development DB
