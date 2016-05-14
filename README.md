@@ -1,1 +1,25 @@
-# API
+# Objective
+
+Graduate Candidate: Using the above dataset, design a persistent RESTful API with basic CRUDL operations implemented.
+
+Senior Candidate: As above, but include filtering and searching
+
+Guidelines:
+
+1. Use the language, tools and technology choices you are most comfortable with.
+2. Be as expressive and feature rich as you wish, just meet the minimum objective requirements for your level of experience, feel free to go beyond this if you so wish.
+3. Create your solution as though you would be shipping this to production -- show us what you value in a code base.
+4. Minimal scaffolding / auto code generation -- we want you to show your ability and creative side so please keep this to a minimum.
+5. Commit early and commit often, we want to see the implementation evolving.
+
+# Database configuration
+
+Development DB
+* host = "localhost"
+* port = "27017"
+* name = "RedHatProject"
+
+Test DB
+* host = "localhost"
+* port = "27017"
+* name = "RedHatProjectTest"
