@@ -4,8 +4,8 @@ class User {
 
     // User Attributes
     String gender
-    def name = [:]
-    def location = [:]
+    Map name
+    Map location
     String email
     String username
     String password
@@ -18,7 +18,7 @@ class User {
     String phone
     String cell
     String PPS
-    def picture = [:]
+    Map picture
 
     // User Attribute Constraints
     static constraints = {
@@ -29,14 +29,14 @@ class User {
       username(maxSize: 20, blank: false)
       password(minSize: 6, blank:false)
       salt(blank: false)
-      md5(size: 32) // MD5 hash is 128 bits or 32 Characters
-      sha1(size: 40) // SHA-1 is 160 bits or 40 Characters
-      sha256(size: 64) // SHA-256 is 256 bits or 64 Characters
+      md5(maxSize: 32, minSize: 32) // MD5 hash is 128 bits or 32 Characters
+      sha1(maxSize: 40, minSize: 40) // SHA-1 is 160 bits or 40 Characters
+      sha256(maxSize: 64, minSize: 64) // SHA-256 is 256 bits or 64 Characters
       registered(blank: false)
       dob(blank: false)
       phone(blank: false, matches: "[0-9]{3}-[0-9]{3}-[0-9]{4}")
       cell(blank: false, matches: "[0-9]{3}-[0-9]{3}-[0-9]{4}")
-      PPS(maxSize: 9, matches: "[A-Za-z]+") // Less than 9 characters and contains atleast 1 letter
+      PPS(maxSize: 9, matches: "[A-Za-z0-9]+") // Less than 9 characters and contains atleast 1 letter
       picture(blank: false)
     }
 }
