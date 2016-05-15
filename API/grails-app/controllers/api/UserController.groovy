@@ -39,7 +39,7 @@ class UserController {
     */
     def search() {
       def searchKey = params.id
-      def users = [users: User.findAllByUsernameILike("%" + searchKey + "%")]
+      def users = [users: User.findAllByUsernameLike("%" + searchKey + "%")]
 
       // HATEOS
       def read = [method: "GET", action: "read", href: "/api/users/id"]
