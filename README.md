@@ -513,3 +513,12 @@ curl -X DELETE "http://localhost:8090/API/api/users/alison.reid@example.com"
 
 # Run Tests
 * Run `grails test-app` in project folder
+
+# Learning Outcomes
+* Being able to create a true RESTful API.
+* Using HATEOS REST API Approach.
+* Improved user validation with indepth constraints.
+* Experience with Git and branching. (Coming from limited Mercurial experience).
+* Improved documenting skills.
+* Debugging network/HTTP issues.
+* Improved testing coverage.
