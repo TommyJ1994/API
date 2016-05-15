@@ -11,6 +11,12 @@ Guidelines:
 4. Minimal scaffolding / auto code generation -- we want you to show your ability and creative side so please keep this to a minimum.
 5. Commit early and commit often, we want to see the implementation evolving.
 
+# Implemented Solution
+* The implemented solution was created using Groovy and Grails with MongoDB.
+* Constraints added to the User domain class.
+* Used HATEOS approach to API.
+* Integration & Unit testing using Spock.
+
 # Resources
 | HTTP Method   | Resources             | Description                         |
 | --------------|:----------------------|:------------------------------------|
