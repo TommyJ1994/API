@@ -4,8 +4,8 @@ class User {
 
     // User Attributes
     String gender
-    def name = [:]
-    def location = [:]
+    Map name
+    Map location
     String email
     String username
     String password
@@ -18,7 +18,7 @@ class User {
     String phone
     String cell
     String PPS
-    def picture = [:]
+    Map picture
 
     // User Attribute Constraints
     static constraints = {
