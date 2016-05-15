@@ -21,10 +21,29 @@ Guidelines:
 | PUT           | /api/users/$id        | Update a users information.         |
 | DELETE        | /api/users/$id        | Delete a user.                      |
 
-## Return List of users
+## Return list of users.
+
+## Return information for a given user.
+
+## Search for a user by username.
+
+## Update a users information.
+
+## Delete a user.
+
+## Create a new user
+* Description
+  * Creates a new user with the data provided in the POST request.
+
+* Resources
+  * `/api/users/$id`
+
+* HTTP method
+  * POST
+
 * Sample request
 ```
-curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: b51ac8cf-e8fe-91e3-9dd1-8ee72b71ccde" -d '{
+curl -X POST -H "Content-Type: application/json" -d '{
     "user": {
       "gender": "female",
       "name": {
