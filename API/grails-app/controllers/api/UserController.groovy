@@ -6,6 +6,23 @@ import static org.springframework.http.HttpStatus.*
 class UserController {
 
     /**
+    * This method returns the list of all unique users email addresses in descending order.
+    * @HttpMethod GET
+    */
+    def index() {
+      def criteria = User.createCriteria()
+		  def userInstanceList = criteria.list {
+		    projections {
+		        distinct('email')
+		    }
+			order('email', 'desc')
+		  }
+
+      def users = [users: userInstanceList]
+      render users as JSON
+    }
+
+    /**
     *
     * @HttpMethod POST
     */
