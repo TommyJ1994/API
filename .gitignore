@@ -4,31 +4,32 @@
 # to generate your .gitignore file.
 
 # web application files
-API/web-app/WEB-INF/classes
+/web-app/WEB-INF/classes
 
 # default HSQL database files for production mode
-API/prodDb.*
+/prodDb.*
 
 # general HSQL database files
-API/*Db.properties
-API/*Db.script
+*Db.properties
+*Db.script
 
 # logs
-API/stacktrace.log
-API/test/reports
-API/logs
+/stacktrace.log
+/test/reports
+/logs
 
 # project release file
-API/*.war
+/*.war
 
 # plugin release files
-API/*.zip
-API/plugin.xml
+/*.zip
+/plugin.xml
 
 # older plugin install locations
-API/plugins
-API/web-app/plugins
+/plugins
+/web-app/plugins
 
 # "temporary" build files
+/target
 API/target/
 API/web-app/
