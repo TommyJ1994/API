@@ -14,12 +14,14 @@ Guidelines:
 
 # Resources
 
-* GET - "/api/users" - Return list of users.
-* GET - "/api/users/$id" - Return information for a given user.
-* GET - "/api/users/search/$id" - Search for a user by username
-* POST - "/api/users" - Create a new user.
-* PUT - "/api/users/$id" - Update a users information.
-* DELETE - "/api/users/$id" - Delete a user.
+| HTTP Method   | Resources             | Description                         |
+| ------------- |:---------------------:| -----------------------------------:|
+| GET           | /api/users            | Return list of users.               |
+| GET           | /api/users/$id        | Return information for a given user |
+| GET           | /api/users/search/$id | Search for a user by username       |
+| POST          | /api/users            | Create a new user.                  |
+| PUT           | /api/users/$id        | Update a users information.         |
+| DELETE        | /api/users/$id        | Delete a user.                      |
 
 # Database configuration
 
@@ -32,3 +34,9 @@ Test DB
 * host = "localhost"
 * port = "27017"
 * name = "RedHatProjectTest"
+
+# Run Application
+* grails run-app in project folder
+
+# Run Tests
+* grails test-app in project folder
