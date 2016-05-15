@@ -133,7 +133,7 @@ class UserController {
     /**
     * This method updates the data for a user found using the email address sent with the the PUT request.
     * @HttpMethod PUT
-    * @params id = the email address of the user
+    * @params id - the email address of the user
     */
     def update(){
       String email = params.id
@@ -190,6 +190,7 @@ class UserController {
     /**
     * This method deletes the user found using the email address sent with the DELETE request.
     * @HttpMethod DELETE
+    * @params id = the email of the user to delete
     */
     def delete() {
       String email = params.id
