@@ -16,6 +16,7 @@ Guidelines:
 * Constraints added to the User domain class.
 * Used HATEOS approach to API.
 * Integration & Unit testing using Spock.
+* [Simple Cordova Mobile Test Client](https://github.com/TommyJ1994/ApiClient)
 
 # Resources
 | HTTP Method   | Resources             | Description                         |
