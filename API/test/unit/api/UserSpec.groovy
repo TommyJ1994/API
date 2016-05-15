@@ -15,6 +15,7 @@ class UserSpec extends Specification {
     def cleanup() {
     }
 
+
     void "Test User creation using valid data"() {
 		given: "a new User Object is created"
       def name = [title: "mr", first: "john", last: "williams"]
@@ -45,6 +46,7 @@ class UserSpec extends Specification {
 		then: "the number of Users should be equals to 1"
 			assertEquals 1, User.list().size()
     }
+
 
     void "Test Invalid Gender"() {
 		given: "a new User Object is created"
@@ -77,6 +79,7 @@ class UserSpec extends Specification {
 			assertEquals 0, User.list().size()
     }
 
+
     void "Test Invalid Email Address"() {
 		given: "a new User Object is created"
       def name = [title: "mr", first: "tim", last: "wall"]
@@ -104,8 +107,296 @@ class UserSpec extends Specification {
 		when: "the User does not pass the validation test"
 		  user.save(flush:true)
 
-		then: "the number of Users should be equals to 1"
-			assertEquals 1, User.list().size()
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
     }
+
+
+    void "Test Username that is too long"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuck2",
+        password: "123457",
+        salt: "AsxzewdQ",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "041-252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
+
+    void "Test password too short"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "12347",
+        salt: "AsxzewdQ",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "041-252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
+
+    void "Test blank user attributes"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "1234724",
+        salt: "",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "041-252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
+    void "Test incorrect MD5 hash length"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "12347",
+        salt: "AsxzewdQ",
+        md5: "5809e5fda81eed34bad9ca6ef",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "041-252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
+
+    void "Test incorrect SHA1 hash length"() {
+    given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+        name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "12347",
+        salt: "AsxzewdQ",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "041-252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+    when: "the User does not pass the validation test"
+      user.save(flush:true)
+
+    then: "the number of Users should be equals to 0"
+      assertEquals 0, User.list().size()
+    }
+
+
+    void "Test incorrect SHA256 hash length"() {
+    given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+        name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "12347",
+        salt: "AsxzewdQ",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "ff9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "041-252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+    when: "the User does not pass the validation test"
+      user.save(flush:true)
+
+    then: "the number of Users should be equals to 0"
+      assertEquals 0, User.list().size()
+    }
+
+
+    void "Test invalid phone number format"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "1234724",
+        salt: "1234724",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "04252-0953",
+        cell: "081-567-1935",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
+
+    void "Test invalid phone number format"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "1234724",
+        salt: "1234724",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "081-567-1935",
+        cell: "01-57-135",
+        PPS: "2470896T",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
+
+    void "Test invalid PPS structure"() {
+		given: "a new User Object is created"
+      def name = [title: "mr", first: "tim", last: "wall"]
+      def location = [street: "5857 woodlawn avenue", city: "Westport", state: "alaska", zip: 71280]
+      def picture = [large: "https://randomuser.me/api/portraits/woman/75.jpg", medium: "https://randomuser.me/api/portraits/med/woman/75.jpg", thumbnail: "https://randomuser.me/api/portraits/thumb/woman/75.jpg"]
+
+      def user = new User(gender: 'male',
+  			name: name,
+        location: location,
+        email: "tim.hello@email.com",
+        username: "timBuc",
+        password: "1234724",
+        salt: "1234724",
+        md5: "5809e5fda81eed34bad9ca6eff414924",
+        sha1: "6c95f0d9210e88028074d4baaeefc3d6c830a9a3",
+        sha256: "f92fc585c017d093b03dba898162613380f137f934637c5bf9050fe68c103c54",
+        registered: 1180746503,
+        dob: 1028583070,
+        phone: "081-567-1935",
+        cell: "01-57-135",
+        PPS: "2470897",
+        picture: picture
+        )
+
+		when: "the User does not pass the validation test"
+		  user.save(flush:true)
+
+		then: "the number of Users should be equals to 0"
+			assertEquals 0, User.list().size()
+    }
+
 
 }
