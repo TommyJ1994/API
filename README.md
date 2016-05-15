@@ -482,6 +482,7 @@ curl -X DELETE "http://localhost:8090/API/api/users/alison.reid@example.com"
         }
     }
 }
+```
 
 # Database configuration
 ## Development DB
