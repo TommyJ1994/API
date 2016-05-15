@@ -14,11 +14,12 @@ Guidelines:
 
 # Resources
 
-GET - "/api/users" - Return list of users.
-GET - "/api/users/$id" - Return information for a given user.
-POST - "/api/users" - Create a new user.
-PUT - "/api/users/$id" - Update a users information.
-DELETE - "/api/users/$id" - Delete a user.
+* GET - "/api/users" - Return list of users.
+* GET - "/api/users/$id" - Return information for a given user.
+* GET - "/api/users/search/$id" - Search for a user by username
+* POST - "/api/users" - Create a new user.
+* PUT - "/api/users/$id" - Update a users information.
+* DELETE - "/api/users/$id" - Delete a user.
 
 # Database configuration
 
