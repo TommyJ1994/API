@@ -23,7 +23,22 @@ class UserController {
     }
 
     /**
-    *
+    * This method returns data for a user found using the email address sent with the GET request.
+    * @HttpMethod GET
+    */
+    def show() {
+      String email = params.id
+      def user = [user: User.findByEmail(email)]
+      if(user == null) {
+          render status:404
+      }
+      else {
+          render user as JSON
+      }
+    }
+
+    /**
+    * This method creates a new User with valid data using the data sent with the POST request.
     * @HttpMethod POST
     */
     def create() {
