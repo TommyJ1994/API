@@ -1,5 +1,4 @@
 # Objective
-
 Graduate Candidate: Using the above dataset, design a persistent RESTful API with basic CRUDL operations implemented.
 
 Senior Candidate: As above, but include filtering and searching
@@ -13,7 +12,6 @@ Guidelines:
 5. Commit early and commit often, we want to see the implementation evolving.
 
 # Resources
-
 | HTTP Method   | Resources             | Description                         |
 | ------------- |:---------------------:| -----------------------------------:|
 | GET           | /api/users            | Return list of users.               |
@@ -24,19 +22,24 @@ Guidelines:
 | DELETE        | /api/users/$id        | Delete a user.                      |
 
 # Database configuration
-
 Development DB
 * host = "localhost"
 * port = "27017"
 * name = "RedHatProject"
 
-Test DB
+Testing DB
 * host = "localhost"
 * port = "27017"
 * name = "RedHatProjectTest"
 
+# Component Versions
+* Groovy Version 2.3.7
+* Java Version 1.7.0
+* Grails Version 2.4.4
+* MongoDB Version 3.0.3
+
 # Run Application
-* grails run-app in project folder
+* Run `grails run-app` in project folder
 
 # Run Tests
-* grails test-app in project folder
+* Run `grails test-app` in project folder
