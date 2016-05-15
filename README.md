@@ -13,21 +13,114 @@ Guidelines:
 
 # Resources
 | HTTP Method   | Resources             | Description                         |
-| ------------- |:---------------------:| -----------------------------------:|
+| --------------|:----------------------|:------------------------------------|
 | GET           | /api/users            | Return list of users.               |
-| GET           | /api/users/$id        | Return information for a given user |
-| GET           | /api/users/search/$id | Search for a user by username       |
+| GET           | /api/users/$id        | Return information for a given user.|
+| GET           | /api/users/search/$id | Search for a user by username.      |
 | POST          | /api/users            | Create a new user.                  |
 | PUT           | /api/users/$id        | Update a users information.         |
 | DELETE        | /api/users/$id        | Delete a user.                      |
 
+## Return List of users
+* Sample request
+```
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -H "Postman-Token: b51ac8cf-e8fe-91e3-9dd1-8ee72b71ccde" -d '{
+    "user": {
+      "gender": "female",
+      "name": {
+        "title": "miss",
+        "first": "alison",
+        "last": "reid"
+      },
+      "location": {
+        "street": "1097 the avenue",
+        "city": "Newbridge",
+        "state": "ohio",
+        "zip": 28782
+      },
+      "email": "alison.reid@example.com",
+      "username": "tinywolf709",
+      "password": "rockon",
+      "salt": "lypI10wj",
+      "md5": "bbdd6140e188e3bf68ae7ae67345df65",
+      "sha1": "4572d25c99aa65bbf0368168f65d9770b7cacfe6",
+      "sha256": "ec0705aec7393e2269d4593f248e649400d4879b2209f11bb2e012628115a4eb",
+      "registered": 1237176893,
+      "dob": 932871968,
+      "phone": "031-541-9181",
+      "cell": "081-647-4650",
+      "PPS": "3302243T",
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/women/60.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/women/60.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/women/60.jpg"
+      }
+    }
+  }' "http://localhost:8090/API/api/users"
+  ```
+* Sample Response
+```
+{
+    "user": {
+        "class": "api.User",
+        "id": 58,
+        "PPS": "3302243T",
+        "cell": "081-647-4650",
+        "dob": 932871968,
+        "email": "alison.reid@example.com",
+        "gender": "female",
+        "location": {
+            "street": "1097 the avenue",
+            "city": "Newbridge",
+            "state": "ohio",
+            "zip": 28782
+        },
+        "md5": "bbdd6140e188e3bf68ae7ae67345df65",
+        "name": {
+            "title": "miss",
+            "first": "alison",
+            "last": "reid"
+        },
+        "password": "rockon",
+        "phone": "031-541-9181",
+        "picture": {
+            "large": "https://randomuser.me/api/portraits/women/60.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/women/60.jpg",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/women/60.jpg"
+        },
+        "registered": 1237176893,
+        "salt": "lypI10wj",
+        "sha1": "4572d25c99aa65bbf0368168f65d9770b7cacfe6",
+        "sha256": "ec0705aec7393e2269d4593f248e649400d4879b2209f11bb2e012628115a4eb",
+        "username": "tinywolf709"
+    },
+    "links": {
+        "read": {
+            "method": "GET",
+            "action": "read",
+            "href": "/api/users/alison.reid@example.com"
+        },
+        "delete": {
+            "method": "DELETE",
+            "action": "delete",
+            "href": "/api/users/alison.reid@example.com"
+        },
+        "update": {
+            "method": "PUT",
+            "action": "update",
+            "href": "/api/users/alison.reid@example.com"
+        }
+    }
+}
+```
+
 # Database configuration
-Development DB
+##Development DB
 * host = "localhost"
 * port = "27017"
 * name = "RedHatProject"
 
-Testing DB
+##Testing DB
 * host = "localhost"
 * port = "27017"
 * name = "RedHatProjectTest"
