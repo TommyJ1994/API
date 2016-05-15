@@ -18,8 +18,18 @@ class UserController {
 			order('email', 'desc') // Descending Order
 		  }
 
-      def users = [users: userInstanceList]
-      render users as JSON
+      // HATEOS
+      def create = [method: "POST", action: "create", href: "/api/users/"]
+      def read = [method: "GET", action: "read", href: "/api/users/id"]
+      def delete = [method: "DELETE", action: "delete", href: "/api/users/id"]
+      def update = [method: "PUT", action: "update", href: "/api/users/id"]
+      def search = [method: "GET", action: "search", href: "/api/users/search/id"]
+      def links = [create: create, read: read, delete: delete, update: update, search: search]
+
+      // Response Formatting
+      response.status = 200
+      def response = [users: userInstanceList, links: links]
+      render response as JSON
     }
 
     /**
@@ -30,7 +40,17 @@ class UserController {
     def search() {
       def searchKey = params.id
       def users = [users: User.findAllByUsernameILike("%" + searchKey + "%")]
-      render users as JSON
+
+      // HATEOS
+      def read = [method: "GET", action: "read", href: "/api/users/id"]
+      def delete = [method: "DELETE", action: "delete", href: "/api/users/id"]
+      def update = [method: "PUT", action: "update", href: "/api/users/id"]
+      def links = [read: read, delete: delete, update: update]
+
+      // Response Formatting
+      response.status = 200
+      def response = [users: users, links: links]
+      render response as JSON
     }
 
     /**
@@ -41,11 +61,22 @@ class UserController {
     def show() {
       String email = params.id
       def user = [user: User.findByEmail(email)]
+
+      // HATEOS
+      def delete = [method: "DELETE", action: "delete", href: "/api/users/" + params.id]
+      def update = [method: "PUT", action: "update", href: "/api/users/"  + params.id]
+      def links = [delete: delete, update: update]
+
+      // Null check & Response Formatting
       if(user == null) {
-          render status:NOT_FOUND
+          response.status = 404
+          def response = [links: links]
+          render response as JSON
       }
       else {
-          render user as JSON
+        response.status = 200
+        def response = [user: user, links: links]
+        render response as JSON
       }
     }
 
@@ -78,15 +109,25 @@ class UserController {
         picture: picture
         )
 
+      // HATEOS
+      def read = [method: "GET", action: "read", href: "/api/users/" + data.email]
+      def delete = [method: "DELETE", action: "delete", href: "/api/users/" + data.email]
+      def update = [method: "PUT", action: "update", href: "/api/users/" + data.email]
+      def links = [read: read, delete: delete, update: update]
+
+      // Validation Checks
       user.validate()
     		if (user.hasErrors()) {
-    			respond status: NOT_ACCEPTABLE
-    			println user.errors
-    			return
+          response.status = 405
+          def response = [errors: user.errors, links: links]
+          render response as JSON
     		}
 
+      // Response Formatting
       user.save(flush:true)
-      respond status: CREATED
+      response.status = 200
+      def response = [user: user, links: links]
+      render response as JSON
     }
 
     /**
@@ -108,6 +149,7 @@ class UserController {
         def location = [street: data.location.street, city: data.location.city, state: data.location.state, zip: data.location.zip]
         def picture = [large: data.picture.large, medium: data.picture.medium, thumbnail: data.picture.thumbnail]
 
+        // Update user credentials
           user.gender = data.gender
           user.name = name
           user.location = location
@@ -125,33 +167,50 @@ class UserController {
           user.PPS = data.PPS
           user.picture = picture
 
+        // HATEOS
+        def read = [method: "GET", action: "read", href: "/api/users/" + data.email]
+        def delete = [method: "DELETE", action: "delete", href: "/api/users/" + data.email]
+        def links = [read: read, delete: delete]
+
+        // Validation Checks
         user.validate()
           if (user.hasErrors()) {
-            respond status: NOT_ACCEPTABLE
-            println user.errors
-            return
+            response.status = 405
+            def response = [errors: user.errors, links: links]
+            render response as JSON
           }
 
-        user.save(flush:true)
-        respond status: OK
+          // Response Formatting
+          response.status = 200
+          def response = [user: user, links: links]
+          render response as JSON
       }
     }
 
     /**
-    * This method rdeletes the user found using the email address sent with the DELETE request.
+    * This method deletes the user found using the email address sent with the DELETE request.
     * @HttpMethod DELETE
     */
     def delete() {
       String email = params.id
-      def user = [user: User.findByEmail(email)]
+      def user = User.findByEmail(email)
+
+      // HATEOS
+      def create = [method: "POST", action: "create", href: "/api/users/"]
+      def list = [method: "GET", action: "list", href: "/api/users/"]
+      def links = [list: list, create: create]
 
       if(user == null) {
-          render status:NOT_FOUND
+        response.status = 404
       }
       else {
           user.delete()
-          respond status: OK
+          response.status = 200
       }
+
+      // Response Formatting
+      def response = [links: links]
+      render response as JSON
     }
 
 }
