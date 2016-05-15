@@ -13,12 +13,23 @@ class UserController {
       def criteria = User.createCriteria()
 		  def userInstanceList = criteria.list {
 		    projections {
-		        distinct('email')
+		        distinct('email') // Unique Results
 		    }
-			order('email', 'desc')
+			order('email', 'desc') // Descending Order
 		  }
 
       def users = [users: userInstanceList]
+      render users as JSON
+    }
+
+    /**
+    * This method returns all users matching a username similar to the search key.
+    * @HttpMethod GET
+    * @params id = the search key
+    */
+    def search() {
+      def searchKey = params.id
+      def users = [users: User.findAllByUsernameILike("%" + searchKey + "%")]
       render users as JSON
     }
 
