@@ -124,7 +124,23 @@ class UserController {
         user.save(flush:true)
         respond status: OK
       }
+    }
 
+    /**
+    * This method rdeletes the user found using the email address sent with the DELETE request.
+    * @HttpMethod DELETE
+    */
+    def delete() {
+      String email = params.id
+      def user = [user: User.findByEmail(email)]
+
+      if(user == null) {
+          render status:NOT_FOUND
+      }
+      else {
+          user.delete()
+          respond status: OK
+      }
     }
 
 }
